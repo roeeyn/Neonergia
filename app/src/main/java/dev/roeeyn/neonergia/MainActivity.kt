@@ -43,6 +43,10 @@ class MainActivity : AppCompatActivity() {
         getSystemService(Context.LOCATION_SERVICE) as LocationManager?
     }
 
+    private val sharedPreferences by lazy {
+        getSharedPreferences("neoenergia_sp", Context.MODE_PRIVATE)
+    }
+
     private val locationListener: LocationListener = object : LocationListener {
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -79,10 +83,9 @@ class MainActivity : AppCompatActivity() {
 
             //sendDemoDeviceEntry()
             try {
-                // TODO If its first time
-                locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
-                // TODO else
-                // sendDemoDeviceEntry()
+                val savedSSID = getSSIDName()?.let {
+                    sendDemoDeviceEntry("")
+                } ?: locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
 
             } catch (ex: SecurityException) {
                 Log.e("ERROROROROR", ex.toString())
@@ -92,11 +95,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun saveSSIDName(ssid: String){
+        val editor = sharedPreferences.edit()
+        editor.putString("SSID_NAME", ssid)
+        editor.apply()
+    }
+
+    fun getSSIDName():String?{
+        val ssid = sharedPreferences.getString("SSID_NAME", null)
+        Log.d("IHATEYOU", ssid?.toString() ?: "NO WIFI MADAFAKA")
+        return ssid
+    }
 
     fun sendDemoDeviceEntry(location : String){
 
         val ssid = WifiReceiver.getSSID(this)
-
+        saveSSIDName(ssid)
         val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
         deviceApiService
