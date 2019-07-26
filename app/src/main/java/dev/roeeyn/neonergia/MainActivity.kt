@@ -12,15 +12,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Build
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
 
     private val alarmManager by lazy {
        getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -32,6 +39,28 @@ class MainActivity : AppCompatActivity() {
 
     private val deviceApiService by lazy {
         DeviceServiceFactory.createService()
+    }
+
+    private val locationManager by lazy {
+        getSystemService(Context.LOCATION_SERVICE) as LocationManager?
+    }
+
+    private val locationListener: LocationListener = object : LocationListener {
+        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
+            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onProviderEnabled(p0: String?) {
+            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onProviderDisabled(p0: String?) {
+            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+
+        override fun onLocationChanged(location: Location?) {
+            toast("lng: ${location?.longitude}, lat: ${location?.latitude} ")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +76,12 @@ class MainActivity : AppCompatActivity() {
 
         fab.setOnClickListener {
 
-            sendDemoDeviceEntry()
+            //sendDemoDeviceEntry()
+            try {
+                locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+            } catch (ex: SecurityException) {
+                Log.e("ERROROROROR", ex.toString())
+            }
 
         }
 
@@ -55,8 +89,13 @@ class MainActivity : AppCompatActivity() {
 
 
     fun sendDemoDeviceEntry(){
+
+        val ssid = WifiReceiver.getSSID(this)
+
+
+
         deviceApiService
-            .postDemoEntry(DeviceDemoResponse("WIFI Rodrigo", "123abc", "2019-08-84:01:02", "-94.74,128.3"))
+            .postDemoEntry(DeviceDemoResponse(ssid, "123abc", timeStamp, "-94.74,128.3"))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { toast("Iniciando petición") }

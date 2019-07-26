@@ -28,12 +28,6 @@ class WifiReceiver: BroadcastReceiver(){
 
     }
 
-    fun getSSID(context: Context): String {
-        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
-        val info = wifiManager!!.connectionInfo
-        return info.ssid
-    }
-
     interface WifiListener {
         fun onWifiOn()
         fun onWifiOff()
@@ -41,6 +35,11 @@ class WifiReceiver: BroadcastReceiver(){
 
     companion object {
         var wifiReceiver: WifiListener? = null
+        fun getSSID(context: Context): String {
+            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
+            val info = wifiManager?.connectionInfo?.ssid ?: ""
+            return info
+        }
     }
 
 }
