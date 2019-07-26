@@ -13,6 +13,7 @@ class TimerReceiver: BroadcastReceiver(){
             context?.startService(serviceIntent)
         } else {
             Log.d("YAAAAAA", "Alarm Manager just ran (ahuevo)")
+            // TODO here we should do the post to Firebase
         }
     }
 

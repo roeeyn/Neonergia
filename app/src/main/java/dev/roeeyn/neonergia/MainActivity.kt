@@ -16,6 +16,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
+import android.provider.Settings
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
@@ -112,9 +113,10 @@ class MainActivity : AppCompatActivity() {
         val ssid = WifiReceiver.getSSID(this)
         saveSSIDName(ssid)
         val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
+        val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
         deviceApiService
-            .postDemoEntry(DeviceDemoResponse(ssid, "123abc", timeStamp, location))
+            .postDemoEntry(DeviceDemoResponse(ssid, deviceId, timeStamp, location))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { toast("Iniciando petición") }
