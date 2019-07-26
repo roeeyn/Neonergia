@@ -27,8 +27,6 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
-    private val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Date())
-
     private val alarmManager by lazy {
        getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
@@ -60,6 +58,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onLocationChanged(location: Location?) {
             toast("lng: ${location?.longitude}, lat: ${location?.latitude} ")
+            locationManager?.removeUpdates(this)
         }
     }
 
@@ -92,6 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         val ssid = WifiReceiver.getSSID(this)
 
+        val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
 
         deviceApiService
