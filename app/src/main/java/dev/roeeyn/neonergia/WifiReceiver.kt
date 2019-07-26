@@ -15,16 +15,19 @@ class WifiReceiver: BroadcastReceiver(){
         )
 
         when (wifiStateExtra) {
+            WifiManager.WIFI_STATE_ENABLED -> wifiReceiver?.onWifiOn() // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
+            WifiManager.WIFI_STATE_DISABLED -> wifiReceiver?.onWifiOff() // TODO ask if shared preference exist, if yes DELETE sp, and device from devices list
+        }
 
-            WifiManager.WIFI_STATE_ENABLED -> {
-                Toast.makeText(context, "WiFi is ON", Toast.LENGTH_LONG).show()
+    }
 
-                // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
-            }
+    interface WifiListener {
+        fun onWifiOn()
+        fun onWifiOff()
+    }
 
-            WifiManager.WIFI_STATE_DISABLED -> Toast.makeText(context, "WiFi is OFF", Toast.LENGTH_LONG).show()
-        }// TODO ask if shared preference exist, if yes DELETE sp, and device from devices list
-
+    companion object {
+        var wifiReceiver: WifiListener? = null
     }
 
 }
