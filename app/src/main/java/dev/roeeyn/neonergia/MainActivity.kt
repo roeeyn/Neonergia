@@ -1,5 +1,7 @@
 package dev.roeeyn.neonergia
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.IntentFilter
 import android.net.wifi.WifiManager
@@ -10,49 +12,39 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.os.Build
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 
+class MainActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity(), WifiReceiver.WifiListener {
-
-    private val wifiManager by lazy {
-        applicationContext.getSystemService(Context.WIFI_SERVICE)
+    private val alarmManager by lazy {
+       getSystemService(Context.ALARM_SERVICE) as AlarmManager
     }
 
-    // private val wifiReceiver = WifiReceiver()
+    private val pendingIntent by lazy {
+        PendingIntent.getBroadcast(this, 0, Intent(this, TimerReceiver::class.java), 0)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        // WifiReceiver.wifiReceiver = this
         val service = Intent(this, WifiReceiverService::class.java)
         startService(service)
-        // val intentFilter = IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION)
-        // registerReceiver(wifiReceiver, intentFilter)
+
+        val serviceIntent = Intent(this, TimerService::class.java)
+        startService(serviceIntent)
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        // unregisterReceiver(wifiReceiver)
+    fun startAlarm(){
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> alarmManager.setAndAllowWhileIdle(AlarmManager.RTC, 0, pendingIntent)
+            else -> alarmManager.set(AlarmManager.RTC, 0, pendingIntent)
+        }
     }
-
-    override fun onWifiOn() {
-        toast("WiFi is ON")
-        toast("SSID: "+getSSID())
-    }
-
-    override fun onWifiOff() {
-        toast("WiFi is OFF")
-    }
-
-    fun getSSID(): String {
-        val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
-        val info = wifiManager!!.connectionInfo
-        return info.ssid
-    }
-
 
 }

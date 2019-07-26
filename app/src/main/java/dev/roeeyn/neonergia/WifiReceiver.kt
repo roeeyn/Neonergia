@@ -18,7 +18,7 @@ class WifiReceiver: BroadcastReceiver(){
         when (wifiStateExtra) {
             WifiManager.WIFI_STATE_ENABLED -> {
                 wifiReceiver?.onWifiOn()
-                Log.d("YAAAAA", "WiFi is ON bitchessss")
+                Log.d("YAAAAA", "WiFi is ON bitchessss: "+context?.let { getSSID(it) })
             } // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
             WifiManager.WIFI_STATE_DISABLED -> {
                 wifiReceiver?.onWifiOff()
@@ -26,6 +26,12 @@ class WifiReceiver: BroadcastReceiver(){
             } // TODO ask if shared preference exist, if yes DELETE sp, and device from devices list
         }
 
+    }
+
+    fun getSSID(context: Context): String {
+        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
+        val info = wifiManager!!.connectionInfo
+        return info.ssid
     }
 
     interface WifiListener {
