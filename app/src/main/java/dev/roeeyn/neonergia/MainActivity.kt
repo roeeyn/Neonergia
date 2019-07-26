@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import android.os.Build
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -27,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         PendingIntent.getBroadcast(this, 0, Intent(this, TimerReceiver::class.java), 0)
     }
 
+    private val deviceApiService by lazy {
+        DeviceServiceFactory.createService()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,13 +45,30 @@ class MainActivity : AppCompatActivity() {
         val serviceIntent = Intent(this, TimerService::class.java)
         startService(serviceIntent)
 
+        fab.setOnClickListener {
+
+            sendDemoDeviceEntry()
+
+        }
+
     }
 
-    fun startAlarm(){
-        when {
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M -> alarmManager.setAndAllowWhileIdle(AlarmManager.RTC, 0, pendingIntent)
-            else -> alarmManager.set(AlarmManager.RTC, 0, pendingIntent)
-        }
+
+    fun sendDemoDeviceEntry(){
+        deviceApiService
+            .postDemoEntry(DeviceDemoResponse("WIFI Rodrigo", "123abc", "2019-08-84:01:02", "-94.74,128.3"))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { toast("Iniciando petición") }
+            .doFinally { toast("Finalizó petición") }
+            .subscribeBy(
+                onSuccess = {
+                    Log.d("HackademyTag", it.toString())
+                },
+                onError = {
+                    Log.e("HackademyTag", it.toString())
+                }
+            )
     }
 
 }
