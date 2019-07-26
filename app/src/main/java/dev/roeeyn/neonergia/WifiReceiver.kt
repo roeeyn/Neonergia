@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.wifi.WifiManager
+import android.util.Log
 import android.widget.Toast
 
 class WifiReceiver: BroadcastReceiver(){
@@ -15,8 +16,14 @@ class WifiReceiver: BroadcastReceiver(){
         )
 
         when (wifiStateExtra) {
-            WifiManager.WIFI_STATE_ENABLED -> wifiReceiver?.onWifiOn() // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
-            WifiManager.WIFI_STATE_DISABLED -> wifiReceiver?.onWifiOff() // TODO ask if shared preference exist, if yes DELETE sp, and device from devices list
+            WifiManager.WIFI_STATE_ENABLED -> {
+                wifiReceiver?.onWifiOn()
+                Log.d("YAAAAA", "WiFi is ON bitchessss")
+            } // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
+            WifiManager.WIFI_STATE_DISABLED -> {
+                wifiReceiver?.onWifiOff()
+                Log.d("YAAAAA", "WiFi is OFF bitchessss")
+            } // TODO ask if shared preference exist, if yes DELETE sp, and device from devices list
         }
 
     }
