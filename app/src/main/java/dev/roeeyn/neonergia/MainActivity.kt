@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         override fun onLocationChanged(location: Location?) {
             toast("lng: ${location?.longitude}, lat: ${location?.latitude} ")
+            val location = "lng: ${location?.longitude}, lat: ${location?.latitude}"
+            sendDemoDeviceEntry(location)
             locationManager?.removeUpdates(this)
         }
     }
@@ -77,7 +79,11 @@ class MainActivity : AppCompatActivity() {
 
             //sendDemoDeviceEntry()
             try {
+                // TODO If its first time
                 locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+                // TODO else
+                // sendDemoDeviceEntry()
+
             } catch (ex: SecurityException) {
                 Log.e("ERROROROROR", ex.toString())
             }
@@ -87,15 +93,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun sendDemoDeviceEntry(){
+    fun sendDemoDeviceEntry(location : String){
 
         val ssid = WifiReceiver.getSSID(this)
 
         val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
 
-
         deviceApiService
-            .postDemoEntry(DeviceDemoResponse(ssid, "123abc", timeStamp, "-94.74,128.3"))
+            .postDemoEntry(DeviceDemoResponse(ssid, "123abc", timeStamp, location))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { toast("Iniciando petición") }
