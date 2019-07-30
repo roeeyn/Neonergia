@@ -1,4 +1,4 @@
-package dev.roeeyn.neonergia
+package dev.roeeyn.neonergia.data.models
 
 data class DeviceDemoResponse(
     val ssid: String,
