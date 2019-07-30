@@ -14,6 +14,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.provider.Settings
 import dev.roeeyn.neonergia.*
+import dev.roeeyn.neonergia.data.models.DeviceDemoResponse
 import dev.roeeyn.neonergia.ui.base.BaseActivity
 import dev.roeeyn.neonergia.utils.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -34,10 +35,6 @@ class MainActivity : BaseActivity(), MainMvp.View {
 
     private val pendingIntent by lazy {
         PendingIntent.getBroadcast(this, 0, Intent(this, TimerReceiver::class.java), 0)
-    }
-
-    private val deviceApiService by lazy {
-        DeviceServiceFactory.createService()
     }
 
     private val locationManager by lazy {
@@ -73,6 +70,7 @@ class MainActivity : BaseActivity(), MainMvp.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        mPresenter.onAttach(this)
 
 //        val service = Intent(this, WifiReceiverService::class.java)
 //        startService(service)
@@ -93,6 +91,8 @@ class MainActivity : BaseActivity(), MainMvp.View {
 //            }
 //
 //        }
+
+        fab.setOnClickListener { mPresenter.onFabClick() }
 
     }
 
@@ -115,20 +115,7 @@ class MainActivity : BaseActivity(), MainMvp.View {
         val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
         val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
 
-        deviceApiService
-            .postDemoEntry(DeviceDemoResponse(ssid, deviceId, timeStamp, location))
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe { toast("Iniciando petición") }
-            .doFinally { toast("Finalizó petición") }
-            .subscribeBy(
-                onSuccess = {
-                    Log.d("HackademyTag", it.toString())
-                },
-                onError = {
-                    Log.e("HackademyTag", it.toString())
-                }
-            )
+
     }
 
 }
