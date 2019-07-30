@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.wifi.WifiManager
 import android.util.Log
 import android.widget.Toast
+import dev.roeeyn.neonergia.utils.NetworkUtils
 
 class WifiReceiver: BroadcastReceiver(){
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -18,7 +19,7 @@ class WifiReceiver: BroadcastReceiver(){
         when (wifiStateExtra) {
             WifiManager.WIFI_STATE_ENABLED -> {
                 wifiReceiver?.onWifiOn()
-                Log.d("YAAAAA", "WiFi is ON bitchessss: "+context?.let { getSSID(it) })
+                Log.d("YAAAAA", "WiFi is ON bitchessss: "+context?.let { NetworkUtils.getConnectedWifiName(it) })
             } // TODO we should ask if there is a shared preference if not, CREATE and ADD LOCATION
             WifiManager.WIFI_STATE_DISABLED -> {
                 wifiReceiver?.onWifiOff()
@@ -35,11 +36,6 @@ class WifiReceiver: BroadcastReceiver(){
 
     companion object {
         var wifiReceiver: WifiListener? = null
-        fun getSSID(context: Context): String {
-            val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager?
-            val info = wifiManager?.connectionInfo?.ssid ?: ""
-            return info
-        }
     }
 
 }

@@ -6,3 +6,14 @@ data class DeviceDemoResponse(
     val timestamp: String,
     val location: String
 )
+
+data class FirestoreDeviceEntry(
+    val ssid: String,
+    val deviceId: String,
+    val timestamp: String,
+    val location: String
+)
+
+data class SuccessEntryPost(
+    val success: String
+)

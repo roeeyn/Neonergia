@@ -37,35 +37,6 @@ class MainActivity : BaseActivity(), MainMvp.View {
         PendingIntent.getBroadcast(this, 0, Intent(this, TimerReceiver::class.java), 0)
     }
 
-    private val locationManager by lazy {
-        getSystemService(Context.LOCATION_SERVICE) as LocationManager?
-    }
-
-    private val sharedPreferences by lazy {
-        getSharedPreferences("neoenergia_sp", Context.MODE_PRIVATE)
-    }
-
-    private val locationListener: LocationListener = object : LocationListener {
-        override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun onProviderEnabled(p0: String?) {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun onProviderDisabled(p0: String?) {
-            //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-        }
-
-        override fun onLocationChanged(location: Location?) {
-            toast("lng: ${location?.longitude}, lat: ${location?.latitude} ")
-            val newLocation = "lng: ${location?.longitude}, lat: ${location?.latitude}"
-            sendDemoDeviceEntry(newLocation)
-            locationManager?.removeUpdates(this)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -77,44 +48,8 @@ class MainActivity : BaseActivity(), MainMvp.View {
 //
 //        val serviceIntent = Intent(this, TimerService::class.java)
 //        startService(serviceIntent)
-//
-//        fab.setOnClickListener {
-//
-//            //sendDemoDeviceEntry()
-//            try {
-//                val savedSSID = getSSIDName()?.let {
-//                    sendDemoDeviceEntry("")
-//                } ?: locationManager?.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
-//
-//            } catch (ex: SecurityException) {
-//                Log.e("ERROROROROR", ex.toString())
-//            }
-//
-//        }
 
         fab.setOnClickListener { mPresenter.onFabClick() }
-
-    }
-
-    fun saveSSIDName(ssid: String){
-        val editor = sharedPreferences.edit()
-        editor.putString("SSID_NAME", ssid)
-        editor.apply()
-    }
-
-    fun getSSIDName():String?{
-        val ssid = sharedPreferences.getString("SSID_NAME", null)
-        Log.d("IHATEYOU", ssid?.toString() ?: "NO WIFI MADAFAKA")
-        return ssid
-    }
-
-    fun sendDemoDeviceEntry(location : String){
-
-        val ssid = WifiReceiver.getSSID(this)
-        saveSSIDName(ssid)
-        val timeStamp: String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-        val deviceId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-
 
     }
 
