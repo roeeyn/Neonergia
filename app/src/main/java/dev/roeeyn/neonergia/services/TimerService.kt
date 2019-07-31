@@ -1,4 +1,4 @@
-package dev.roeeyn.neonergia
+package dev.roeeyn.neonergia.services
 
 import android.app.AlarmManager
 import android.app.IntentService

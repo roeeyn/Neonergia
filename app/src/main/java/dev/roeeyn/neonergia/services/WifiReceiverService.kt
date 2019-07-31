@@ -1,4 +1,4 @@
-package dev.roeeyn.neonergia
+package dev.roeeyn.neonergia.services
 
 import android.app.Service
 import android.content.Intent
@@ -8,7 +8,7 @@ import android.os.IBinder
 
 class WifiReceiverService: Service() {
 
-    override fun onBind(p0: Intent?): IBinder? = null
+    override fun onBind(intent: Intent?): IBinder? = null
 
     companion object {
         var wifiReceiver: WifiReceiver? = null
@@ -24,7 +24,8 @@ class WifiReceiverService: Service() {
     }
 
     private fun registerWifiReceiver(){
-        wifiReceiver = WifiReceiver()
+        wifiReceiver =
+            WifiReceiver()
         val intentFilter = IntentFilter(WifiManager.WIFI_STATE_CHANGED_ACTION)
         registerReceiver(wifiReceiver, intentFilter)
     }

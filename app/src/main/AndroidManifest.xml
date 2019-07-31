@@ -29,7 +29,7 @@
         </activity>
 
         <receiver
-                android:name=".TimerReceiver"
+                android:name=".services.TimerReceiver"
                 android:directBootAware="true"
                 android:enabled="true"
                 android:exported="true">
@@ -39,8 +39,8 @@
             </intent-filter>
         </receiver>
 
-        <service android:name=".WifiReceiverService"/>
-        <service android:name=".TimerService"/>
+        <service android:name=".services.WifiReceiverService"/>
+        <service android:name=".services.TimerService"/>
     </application>
 
 </manifest>

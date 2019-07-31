@@ -1,4 +1,4 @@
-package dev.roeeyn.neonergia
+package dev.roeeyn.neonergia.services
 
 import android.content.BroadcastReceiver
 import android.content.Context
