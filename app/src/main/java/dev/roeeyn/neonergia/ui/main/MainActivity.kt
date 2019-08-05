@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
 import dev.roeeyn.neonergia.*
 import dev.roeeyn.neonergia.services.TimerReceiver
+import dev.roeeyn.neonergia.services.TimerService
 import dev.roeeyn.neonergia.ui.base.BaseActivity
 import org.koin.android.ext.android.inject
 
@@ -34,8 +35,8 @@ class MainActivity : BaseActivity(), MainMvp.View {
 //        val service = Intent(this, WifiReceiverService::class.java)
 //        startService(service)
 //
-//        val serviceIntent = Intent(this, TimerService::class.java)
-//        startService(serviceIntent)
+        val serviceIntent = Intent(this, TimerService::class.java)
+        startService(serviceIntent)
 
         fab.setOnClickListener { mPresenter.onFabClick() }
 

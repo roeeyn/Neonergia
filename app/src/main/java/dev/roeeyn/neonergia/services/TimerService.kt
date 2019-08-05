@@ -5,6 +5,8 @@ import android.app.IntentService
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import dev.roeeyn.neonergia.ui.main.MainMvp
+import org.koin.android.ext.android.inject
 
 class TimerService: IntentService("TimerService"){
 

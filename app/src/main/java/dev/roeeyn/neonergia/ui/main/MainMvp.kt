@@ -10,5 +10,6 @@ interface MainMvp {
 
     interface Presenter<V:MainMvp.View>: BaseMvpPresenter<V> {
         fun onFabClick()
+        fun sendDataToFirestore()
     }
 }

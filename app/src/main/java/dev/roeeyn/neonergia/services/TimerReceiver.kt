@@ -4,8 +4,14 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import dev.roeeyn.neonergia.ui.main.MainMvp
+import org.koin.standalone.KoinComponent
+import org.koin.standalone.inject
 
-class TimerReceiver: BroadcastReceiver(){
+class TimerReceiver: BroadcastReceiver(), KoinComponent {
+
+    private val mPresenter:MainMvp.Presenter<MainMvp.View> by inject()
+
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent?.action.equals("android.intent.action.BOOT_COMPLETED")) {
             // TODO verify that it starts at boot
@@ -13,7 +19,7 @@ class TimerReceiver: BroadcastReceiver(){
             context?.startService(serviceIntent)
         } else {
             Log.d("YAAAAAA", "Alarm Manager just ran (ahuevo)")
-            // TODO here we should do the post to Firebase
+            mPresenter.sendDataToFirestore()
         }
     }
 
