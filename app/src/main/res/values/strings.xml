@@ -99,4 +99,5 @@
     </string>
     <string name="title_activity_terms">TermsActivity</string>
     <string name="terms_checkbox">Li e aceto os termos e condições.</string>
+    <string name="permission_instructions">Autorização da visualização do GPS</string>
 </resources>
