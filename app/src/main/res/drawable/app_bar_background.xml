@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape
+                android:shape="rectangle">
+            <corners
+                    android:bottomRightRadius="50dp" />
+            <solid
+                    android:color="@color/colorPrimary" />
+
+        </shape>
+    </item>
+    <!--<item android:bottom="0dp" android:right="0dp">-->
+        <!--&lt;!&ndash;<rotate android:fromDegrees="-45"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:pivotX="75%"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:toDegrees="0">&ndash;&gt;-->
+            <!--<shape>-->
+
+                    <!--&lt;!&ndash;android:shape="line">&ndash;&gt;-->
+
+                <!--<gradient-->
+                        <!--android:angle="90"-->
+                        <!--android:centerColor="#555994"-->
+                        <!--android:endColor="#b5b6d2"-->
+                        <!--android:startColor="#555994"-->
+                        <!--android:type="linear" />-->
+
+                <!--&lt;!&ndash;<stroke&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;android:width="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:color="#000000" />&ndash;&gt;-->
+
+                <!--&lt;!&ndash;<size android:height="2dp" />&ndash;&gt;-->
+
+            <!--</shape>-->
+        <!--&lt;!&ndash;</rotate>&ndash;&gt;-->
+    <!--</item>-->
+</layer-list>

@@ -3,4 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_permission_request">PermissionRequestActivity</string>
     <string name="religa_logo">religa_logo</string>
+    <string name="title_activity_introduction">IntroductionActivity</string>
+    <string name="intro_text_1"><font fgcolor="#61812C">Olá!</font>\n\nCom este app você vai ajudar a detectar faltas de energia rapidamente.\n\n<font fgcolor="#61812C">Vamos lá?</font></string>
+    <string name="intro_text_2">Para nos ajudar, tudo que você precisa fazer é ler todos os nossos termos com cuidado e autorizar que nós tenhamos acesso a sua localização e página de redes wifis, assim poderemos trabalhar para melhor te atender, reduzindo o tempo que você ficará sem energia da próxima vez.</string>
 </resources>
