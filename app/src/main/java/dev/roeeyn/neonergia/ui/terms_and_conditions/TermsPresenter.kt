@@ -11,5 +11,8 @@ class TermsPresenter<V: TermsMvp.View>(dataManager: DataManager):
 
     private val context: Context by inject()
 
+    override fun onNextClicked() = with(mvpView) {
+        if (areTermsApproved()) goToPermissionActivity() else showMessage("Acepta los términos qlo")
+    }
 
 }
