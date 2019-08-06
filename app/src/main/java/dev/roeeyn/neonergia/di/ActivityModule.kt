@@ -6,6 +6,8 @@ import dev.roeeyn.neonergia.ui.main.MainMvp
 import dev.roeeyn.neonergia.ui.main.MainPresenter
 import dev.roeeyn.neonergia.ui.splash.SplashMvp
 import dev.roeeyn.neonergia.ui.splash.SplashPresenter
+import dev.roeeyn.neonergia.ui.terms_and_conditions.TermsMvp
+import dev.roeeyn.neonergia.ui.terms_and_conditions.TermsPresenter
 import org.koin.dsl.module.applicationContext
 
 class ActivityModule {
@@ -14,6 +16,7 @@ class ActivityModule {
             bean { MainPresenter<MainMvp.View>(get()) as MainMvp.Presenter<MainMvp.View>}
             bean { SplashPresenter<SplashMvp.View>(get()) as SplashMvp.Presenter<SplashMvp.View> }
             bean { IntroductionPresenter<IntroductionMvp.View>(get()) as IntroductionMvp.Presenter<IntroductionMvp.View> }
+            bean { TermsPresenter<TermsMvp.View>(get()) as TermsMvp.Presenter<TermsMvp.View> }
         }
     }
 }
