@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import dev.roeeyn.neonergia.R
 import dev.roeeyn.neonergia.ui.base.BaseActivity
 import dev.roeeyn.neonergia.ui.permissions_requests.PermissionRequestActivity
+import dev.roeeyn.neonergia.ui.terms_and_conditions.TermsActivity
 
 import kotlinx.android.synthetic.main.activity_introduction.*
 import kotlinx.android.synthetic.main.content_introduction.*
@@ -22,9 +23,6 @@ class IntroductionActivity : BaseActivity(), IntroductionMvp.View {
         setContentView(R.layout.activity_introduction)
         mPresenter.onAttach(this)
 
-        // TODO teh text need to be changed from 20sp to 18 to fitting well on screen
-        // "@string/intro_text_1"
-
         fab.setOnClickListener { mPresenter.onNextClick() }
     }
 
@@ -35,7 +33,7 @@ class IntroductionActivity : BaseActivity(), IntroductionMvp.View {
     }
 
     override fun goToNextScreen() {
-        startActivity(Intent(this, PermissionRequestActivity::class.java))
+        startActivity(Intent(this, TermsActivity::class.java))
     }
 
     override fun isLastText(): Boolean = intro_text.text == getString(R.string.intro_text_2)

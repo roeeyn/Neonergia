@@ -4,6 +4,99 @@
     <string name="title_activity_permission_request">PermissionRequestActivity</string>
     <string name="religa_logo">religa_logo</string>
     <string name="title_activity_introduction">IntroductionActivity</string>
-    <string name="intro_text_1"><font fgcolor="#61812C">Olá!</font>\n\nCom este app você vai ajudar a detectar faltas de energia rapidamente.\n\n<font fgcolor="#61812C">Vamos lá?</font></string>
-    <string name="intro_text_2">Para nos ajudar, tudo que você precisa fazer é ler todos os nossos termos com cuidado e autorizar que nós tenhamos acesso a sua localização e página de redes wifis, assim poderemos trabalhar para melhor te atender, reduzindo o tempo que você ficará sem energia da próxima vez.</string>
+    <string name="intro_text_1"><font fgcolor="#61812C">Olá!</font>\n\nCom este app você vai ajudar a detectar faltas de
+        energia rapidamente.\n\n
+        <font fgcolor="#61812C">Vamos lá?</font>
+    </string>
+    <string name="intro_text_2">Para nos ajudar, tudo que você precisa fazer é ler todos os nossos termos com cuidado e
+        autorizar que nós tenhamos acesso a sua localização e página de redes wifis, assim poderemos trabalhar para
+        melhor te atender, reduzindo o tempo que você ficará sem energia da próxima vez.
+    </string>
+    <string name="terms">Terms and Conditions for Religa\n
+        Introduction\n
+        These Website Standard Terms and Conditions written on this webpage shall manage your use of our website,\n
+        religa.io accessible at religa.io.\n
+        \n
+        These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to\n
+        accept all terms and conditions written in here. You must not use this Website if you disagree with any of these\n
+        Website Standard Terms and Conditions. These Terms and Conditions have been generated with the help of the Terms\n
+        And Conditions Template.\n
+        \n
+        Minors or people below 18 years old are not allowed to use this Website.\n
+        \n
+        Intellectual Property Rights\n
+        Other than the content you own, under these Terms, Religa and/or its licensors own all the intellectual property\n
+        rights and materials contained in this Website.\n
+        \n
+        You are granted limited license only for purposes of viewing the material contained on this Website.\n
+        \n
+        Restrictions\n
+        You are specifically restricted from all of the following:\n
+        \n
+        publishing any Website material in any other media;\n
+        selling, sublicensing and/or otherwise commercializing any Website material;\n
+        publicly performing and/or showing any Website material;\n
+        using this Website in any way that is or may be damaging to this Website;\n
+        using this Website in any way that impacts user access to this Website;\n
+        using this Website contrary to applicable laws and regulations, or in any way may cause harm to the Website, or\n
+        to any person or business entity;\n
+        engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this\n
+        Website;\n
+        using this Website to engage in any advertising or marketing.\n
+        Certain areas of this Website are restricted from being access by you and Religa may further restrict access by\n
+        you to any areas of this Website, at any time, in absolute discretion. Any user ID and password you may have for\n
+        this Website are confidential and you must maintain confidentiality as well.\n
+        \n
+        Your Content\n
+        In these Website Standard Terms and Conditions, "Your Content" shall mean any audio, video text, images or other\n
+        material you choose to display on this Website. By displaying Your Content, you grant Religa a non-exclusive,\n
+        worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in\n
+        any and all media.\n
+        \n
+        Your Content must be your own and must not be invading any third-party’s rights. Religa reserves the right to\n
+        remove any of Your Content from this Website at any time without notice.\n
+        \n
+        Your Privacy\n
+        Please read Privacy Policy.\n
+        \n
+        No warranties\n
+        This Website is provided "as is," with all faults, and Religa express no representations or warranties, of any\n
+        kind related to this Website or the materials contained on this Website. Also, nothing contained on this Website\n
+        shall be interpreted as advising you.\n
+        \n
+        Limitation of liability\n
+        In no event shall Religa, nor any of its officers, directors and employees, shall be held liable for anything\n
+        arising out of or in any way connected with your use of this Website whether such liability is under contract.\n
+        Religa, including its officers, directors and employees shall not be held liable for any indirect, consequential\n
+        or special liability arising out of or in any way related to your use of this Website.\n
+        \n
+        Indemnification\n
+        You hereby indemnify to the fullest extent Religa from and against any and/or all liabilities, costs, demands,\n
+        causes of action, damages and expenses arising in any way related to your breach of any of the provisions of\n
+        these Terms.\n
+        \n
+        Severability\n
+        If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be\n
+        deleted without affecting the remaining provisions herein.\n
+        \n
+        Variation of Terms\n
+        Religa is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected\n
+        to review these Terms on a regular basis.\n
+        \n
+        Assignment\n
+        The Religa is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms\n
+        without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights\n
+        and/or obligations under these Terms.\n
+        \n
+        Entire Agreement\n
+        These Terms constitute the entire agreement between Religa and you in relation to your use of this Website, and\n
+        supersede all prior agreements and understandings.\n
+        \n
+        Governing Law and Jurisdiction\n
+        These Terms will be governed by and interpreted in accordance with the laws of the State of br, and you submit\n
+        to the non-exclusive jurisdiction of the state and federal courts located in br for the resolution of any\n
+        disputes.\n
+    </string>
+    <string name="title_activity_terms">TermsActivity</string>
+    <string name="terms_checkbox">Li e aceto os termos e condições.</string>
 </resources>
