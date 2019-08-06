@@ -2,7 +2,6 @@ package dev.roeeyn.neonergia.ui.splash
 
 import dev.roeeyn.neonergia.ui.base.BaseMvpPresenter
 import dev.roeeyn.neonergia.ui.base.BaseMvpView
-import dev.roeeyn.neonergia.ui.main.MainMvp
 
 interface SplashMvp {
 

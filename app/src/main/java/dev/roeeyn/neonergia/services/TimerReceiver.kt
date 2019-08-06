@@ -4,13 +4,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import dev.roeeyn.neonergia.ui.main.MainMvp
+import dev.roeeyn.neonergia.ui.permissions_requests.PermissionRequestMvp
+import org.koin.android.ext.android.inject
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
 
 class TimerReceiver: BroadcastReceiver(), KoinComponent {
 
-    private val mPresenter:MainMvp.Presenter<MainMvp.View> by inject()
+    private val mPresenter: PermissionRequestMvp.Presenter<PermissionRequestMvp.View> by inject()
+
 
     override fun onReceive(context: Context?, intent: Intent?) {
         if (intent?.action.equals("android.intent.action.BOOT_COMPLETED")) {

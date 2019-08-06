@@ -6,7 +6,7 @@ import android.os.Bundle
 import dev.roeeyn.neonergia.R
 import dev.roeeyn.neonergia.ui.base.BaseActivity
 import dev.roeeyn.neonergia.ui.introduction.IntroductionActivity
-import dev.roeeyn.neonergia.ui.main.MainMvp
+import dev.roeeyn.neonergia.ui.permissions_requests.PermissionRequestActivity
 import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseActivity(), SplashMvp.View {
@@ -26,7 +26,8 @@ class SplashActivity : BaseActivity(), SplashMvp.View {
     }
 
     override fun goToMainScreen() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startActivity(Intent(this, PermissionRequestActivity::class.java))
+        finish()
     }
 
 }

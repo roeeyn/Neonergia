@@ -5,5 +5,7 @@ interface PreferencesHelper {
     fun saveActualWifiName(ssid: String)
     fun getActualWifiName():String?
     fun deleteWifiName()
+    fun saveBroadcasterFlag()
+    fun isBroadcastRegistered(): Boolean
 
 }
