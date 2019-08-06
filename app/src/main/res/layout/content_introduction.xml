@@ -65,15 +65,17 @@
                 card_view:cardCornerRadius="30dp"
                 card_view:cardElevation="0dp">
 
-            <TextView android:layout_width="match_parent"
+            <TextView
+                    android:id="@+id/intro_text"
+                    android:layout_width="match_parent"
                       android:layout_marginLeft="65dp"
-                      android:textSize="18sp"
+                      android:textSize="20sp"
                       android:layout_marginTop="15dp"
                       android:layout_marginStart="65dp"
                       android:layout_height="match_parent"
                       android:layout_marginBottom="15dp"
                       android:gravity="start|center"
-                      android:text="@string/intro_text_2"/>
+                      android:text="@string/intro_text_1"/>
 
         </androidx.cardview.widget.CardView>
     </androidx.cardview.widget.CardView>

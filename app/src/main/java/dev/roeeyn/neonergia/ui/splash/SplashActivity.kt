@@ -22,6 +22,7 @@ class SplashActivity : BaseActivity(), SplashMvp.View {
 
     override fun goToIntroductionScreen() {
         startActivity(Intent(this, IntroductionActivity::class.java))
+        finish()
     }
 
     override fun goToMainScreen() {
