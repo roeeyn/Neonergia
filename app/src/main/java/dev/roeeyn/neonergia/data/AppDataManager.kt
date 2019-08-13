@@ -29,4 +29,8 @@ class AppDataManager(
     override fun deleteDeviceFromList(ssid: String, deviceId: String): Single<SuccessEntryPost> =
         apiHelper.deleteDeviceFromList(ssid, deviceId)
 
+    override fun isBroadcastRegistered(): Boolean = preferencesHelper.isBroadcastRegistered()
+
+    override fun saveBroadcasterFlag() = preferencesHelper.saveBroadcasterFlag()
+
 }

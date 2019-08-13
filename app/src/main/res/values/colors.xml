@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#F1F1F1</color>
+    <color name="colorPrimaryDark">#CBCBCB</color>
+    <color name="colorAccent">#61812C</color>
+    <color name="religaGreen">#61812C</color>
+    <color name="religaOrange">#FB9200</color>
 </resources>
